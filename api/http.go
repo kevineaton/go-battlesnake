@@ -31,8 +31,8 @@ func SetupApp() *chi.Mux {
 	r.Use(middleware.Timeout(30 * time.Second))
 
 	// set the routes
-	r.Get("/", StatusRequestRoute)       // a status route identifying the server
-	r.Get("/status", StatusRequestRoute) // a mimic of the above
+	r.Get("/", nil)                      // the main index to identify your battlesnake
+	r.Get("/status", StatusRequestRoute) // a status route identifying the server
 	r.Get("/health", HealthRequestRoute) // used to check if the server is healthy
 
 	// game routes
