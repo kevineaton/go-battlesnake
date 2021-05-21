@@ -1,4 +1,4 @@
-package main
+package api
 
 // SnakeOptions are the different personalization options for a snake: https://play.battlesnake.com/references/customizations/
 type SnakeOptions struct {
@@ -38,6 +38,21 @@ const (
 	SNAKE_HEAD_STANDARD_SILLY     = "silly"
 	SNAKE_HEAD_STANDARD_SMILE     = "tongue"
 
+	// heads - winter 2019
+	SNAKE_HEAD_WINTER_2019_BONHOMME  = "bonhomme"
+	SNAKE_HEAD_WINTER_2019_EARMUFFS  = "earmuffs"
+	SNAKE_HEAD_WINTER_2019_RUDOLPH   = "rudolph"
+	SNAKE_HEAD_WINTER_2019_SCARF     = "scarf"
+	SNAKE_HEAD_WINTER_2019_SKI       = "ski"
+	SNAKE_HEAD_WINTER_2019_SNOWMAN   = "snowman"
+	SNAKE_HEAD_WINTER_2019_SNOW_WORM = "snow-worm"
+
+	// heads - stay home and code 2020
+	SNAKE_HEAD_CODE_2020_CAFFEINE   = "caffeine"
+	SNAKE_HEAD_CODE_2020_GAMER      = "gamer"
+	SNAKE_HEAD_CODE_2020_TIGER_KING = "tiger-king"
+	SNAKE_HEAD_CODE_2020_WORKOUT    = "workout"
+
 	// tails
 
 	SNAKE_TAIL_STANDARD_DEFAULT      = "default"
@@ -52,4 +67,16 @@ const (
 	SNAKE_TAIL_STANDARD_SHARP        = "sharp"
 	SNAKE_TAIL_STANDARD_SKINNY       = "skinny"
 	SNAKE_TAIL_STANDARD_SMALL_RATTLE = "small-rattle"
+
+	// tails - winter 2019
+	SNAKE_TAIL_WINTER_2019_BONHOMME  = "bonhomme"
+	SNAKE_TAIL_WINTER_2019_FLAKE     = "flake"
+	SNAKE_TAIL_WINTER_2019_ICE_SKATE = "ice-skate"
+	SNAKE_TAIL_WINTER_2019_PRESENT   = "present"
+
+	// tails - stay home and code 2020
+	SNAKE_TAIL_CODE_2020_COFEE      = "coffee"
+	SNAKE_TAIL_CODE_2020_MOUSE      = "mouse"
+	SNAKE_TAIL_CODE_2020_TIGER_TAIL = "tiger-tail"
+	SNAKE_TAIL_CODE_2020_WEIGHT     = "weight"
 )
