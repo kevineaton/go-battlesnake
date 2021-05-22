@@ -20,6 +20,11 @@ I vendor my libraries for ease of use and development.
 Currently, the following fields are configurable from the environment:
 
 - BS_API_PORT - the port for the server to listen on, default to 7000
+- BS_SNAKE_COLOR - the desired color of the snake, such as `#FF00AB`. If not provided, it will be randomized at startup.
+- BS_SNAKE_HEAD - the desired snake head. If not provided, it will be randomized at startup.
+- BS_SNAKE_TAIL - the desired snake tail. If not provided, it will be randomized at startup.
+- BS_AUTHOR - your name, defaults to `Someone Online`
+- BS_VERSION - the version of your API, such as a tag or semver number, defaults to v0.0.1
 
 ## Running
 
@@ -37,6 +42,8 @@ This will start the server. To test if it is up, you can issue a command against
 $ curl http://localhost:8888/
 {"status":"up"}
 ```
+
+*NOTE*: Please ensure that, when you go live, you run this over an SSL connection. I personally prefer to place this behind nginx as a reverse proxy with a free Let's Encrypt certificate for TLS.
 
 ### Developing
 

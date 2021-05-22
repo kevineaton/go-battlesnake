@@ -1,5 +1,10 @@
 package api
 
+import (
+	"fmt"
+	"math/rand"
+)
+
 // SnakeOptions are the different personalization options for a snake: https://play.battlesnake.com/references/customizations/
 type SnakeOptions struct {
 	Color string
@@ -23,7 +28,6 @@ type Battlesnake struct {
 // we specify all of the snake options here; the constants should be of SNAKE_WHAT_GROUP_NAME format. Only public customizations
 // available for everyone are added here; feel free to override. Accurate as of 20210518: https://play.battlesnake.com/references/customizations/
 const (
-	// TODO: add all of the rest
 	// heads
 	SNAKE_HEAD_STANDARD_DEFAULT   = "default"
 	SNAKE_HEAD_STANDARD_BELUGA    = "beluga"
@@ -80,3 +84,73 @@ const (
 	SNAKE_TAIL_CODE_2020_TIGER_TAIL = "tiger-tail"
 	SNAKE_TAIL_CODE_2020_WEIGHT     = "weight"
 )
+
+var heads = []string{
+	SNAKE_HEAD_STANDARD_DEFAULT,
+	SNAKE_HEAD_STANDARD_BELUGA,
+	SNAKE_HEAD_STANDARD_BENDR,
+	SNAKE_HEAD_STANDARD_DEAD,
+	SNAKE_HEAD_STANDARD_EVIL,
+	SNAKE_HEAD_STANDARD_FANG,
+	SNAKE_HEAD_STANDARD_PIXEL,
+	SNAKE_HEAD_STANDARD_SAFE,
+	SNAKE_HEAD_STANDARD_SAND_WORM,
+	SNAKE_HEAD_STANDARD_SHADES,
+	SNAKE_HEAD_STANDARD_SILLY,
+	SNAKE_HEAD_STANDARD_SMILE,
+	SNAKE_HEAD_WINTER_2019_BONHOMME,
+	SNAKE_HEAD_WINTER_2019_EARMUFFS,
+	SNAKE_HEAD_WINTER_2019_RUDOLPH,
+	SNAKE_HEAD_WINTER_2019_SCARF,
+	SNAKE_HEAD_WINTER_2019_SKI,
+	SNAKE_HEAD_WINTER_2019_SNOWMAN,
+	SNAKE_HEAD_WINTER_2019_SNOW_WORM,
+	SNAKE_HEAD_CODE_2020_CAFFEINE,
+	SNAKE_HEAD_CODE_2020_GAMER,
+	SNAKE_HEAD_CODE_2020_TIGER_KING,
+	SNAKE_HEAD_CODE_2020_WORKOUT,
+}
+
+var tails = []string{
+	SNAKE_TAIL_STANDARD_DEFAULT,
+	SNAKE_TAIL_STANDARD_BLOCK_BUM,
+	SNAKE_TAIL_STANDARD_BOLT,
+	SNAKE_TAIL_STANDARD_CURLED,
+	SNAKE_TAIL_STANDARD_FAT_RATTLE,
+	SNAKE_TAIL_STANDARD_FRECKLED,
+	SNAKE_TAIL_STANDARD_HOOK,
+	SNAKE_TAIL_STANDARD_PIXEL,
+	SNAKE_TAIL_STANDARD_ROUND_BUM,
+	SNAKE_TAIL_STANDARD_SHARP,
+	SNAKE_TAIL_STANDARD_SKINNY,
+	SNAKE_TAIL_STANDARD_SMALL_RATTLE,
+	SNAKE_TAIL_WINTER_2019_BONHOMME,
+	SNAKE_TAIL_WINTER_2019_FLAKE,
+	SNAKE_TAIL_WINTER_2019_ICE_SKATE,
+	SNAKE_TAIL_WINTER_2019_PRESENT,
+	SNAKE_TAIL_CODE_2020_COFEE,
+	SNAKE_TAIL_CODE_2020_MOUSE,
+	SNAKE_TAIL_CODE_2020_TIGER_TAIL,
+	SNAKE_TAIL_CODE_2020_WEIGHT,
+}
+
+var hexes = []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"}
+
+func getRandomHead() string {
+	return heads[rand.Intn(len(heads)-1)]
+}
+
+func getRandomTail() string {
+	return heads[rand.Intn(len(tails)-1)]
+}
+
+func getRandomColorHex() string {
+	return fmt.Sprintf("#%s%s%s%s%s%s",
+		hexes[rand.Intn(len(hexes)-1)],
+		hexes[rand.Intn(len(hexes)-1)],
+		hexes[rand.Intn(len(hexes)-1)],
+		hexes[rand.Intn(len(hexes)-1)],
+		hexes[rand.Intn(len(hexes)-1)],
+		hexes[rand.Intn(len(hexes)-1)],
+	)
+}

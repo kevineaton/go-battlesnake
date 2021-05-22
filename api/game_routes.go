@@ -21,6 +21,20 @@ func (data *GameRequest) Bind(r *http.Request) error {
 	return nil
 }
 
+// GetSnakeRoute gets the attributes about a snake. In the current UI, this route is not easily seen (missing the HTTP method in the menu)
+func GetSnakeRoute(w http.ResponseWriter, r *http.Request) {
+
+	// this is simple and returns just the configured variables
+	Send(w, http.StatusOK, map[string]string{
+		"apiversion": "1",
+		"author":     Config.Author,
+		"color":      Config.SnakeColor,
+		"head":       Config.SnakeHead,
+		"tail":       Config.SnakeTail,
+		"version":    Config.Version,
+	})
+}
+
 // GameStartRoute is called when a new game is starting: https://docs.battlesnake.com/references/api#start
 func GameStartRoute(w http.ResponseWriter, r *http.Request) {
 
