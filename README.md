@@ -28,6 +28,16 @@ Currently, the following fields are configurable from the environment:
 
 ## Running
 
+### Docker
+
+A Docker image can be pulled with:
+
+`docker pull kevineaton/go-battlesnake`. Running it is as simple as passing in the configuration in the environment:
+
+`docker run -e BS_API_PORT=8987 -e BS_SNAKE_COLOR="#FFFFFF" kevineaton/go-battlesnake`
+
+### From Scratch
+
 If you have the code but not the binary, first build the code:
 
 `$ go build .`
