@@ -141,7 +141,7 @@ func getRandomHead() string {
 }
 
 func getRandomTail() string {
-	return heads[rand.Intn(len(tails)-1)]
+	return tails[rand.Intn(len(tails)-1)]
 }
 
 func getRandomColorHex() string {
