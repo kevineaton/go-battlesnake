@@ -3,6 +3,7 @@ package api
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 	"net/http/httptest"
@@ -40,7 +41,24 @@ func SetupApp() *chi.Mux {
 	r.Post("/move", MoveRequestRoute)
 	r.Post("/end", GameEndRoute)
 
+	// admin routes
+	r.Patch("/admin/snake", ChangeSnakeRoute)
+
 	return r
+}
+
+func checkAuthKey(r *http.Request) (isAuth bool, key string) {
+	foundKey := r.Header.Get("Authorization")
+	if foundKey == "" {
+		return
+	}
+	parts := strings.Split(foundKey, ":")
+	if len(parts) != 2 {
+		return
+	}
+	key = strings.Trim(parts[1], " ")
+	isAuth = key == Config.AuthKey
+	return
 }
 
 // Send is a helper function to normalize what gets sent back and optionally
@@ -67,7 +85,7 @@ func SendError(w *http.ResponseWriter, r *http.Request, status int, systemCode s
 }
 
 // TestAPICall allows an easy way to test HTTP end points in unit testing
-func TestAPICall(method string, endpoint string, data io.Reader, handler http.HandlerFunc) (code int, body *bytes.Buffer, err error) {
+func TestAPICall(method string, endpoint string, data io.Reader, handler http.HandlerFunc, authorizationKey string) (code int, body *bytes.Buffer, err error) {
 	if !strings.HasPrefix(endpoint, "/") {
 		endpoint = "/" + endpoint
 	}
@@ -77,6 +95,7 @@ func TestAPICall(method string, endpoint string, data io.Reader, handler http.Ha
 	}
 
 	req.Header.Add("Content-Type", "application/json; charset=utf-8")
+	req.Header.Add("Authorization", fmt.Sprintf("Bearer: %s", authorizationKey))
 	rr := httptest.NewRecorder()
 
 	chi := SetupApp()
