@@ -17,7 +17,7 @@ func TestSnakeInfoRoute(t *testing.T) {
 	enc.Encode(map[string]string{})
 
 	// begin with a bad call
-	code, body, err := TestAPICall(http.MethodGet, "/", b, GetSnakeRoute)
+	code, body, err := TestAPICall(http.MethodGet, "/", b, GetSnakeRoute, "")
 	assert.Nil(t, err)
 	assert.Equal(t, http.StatusOK, code)
 
@@ -43,7 +43,7 @@ func TestGameStartRoute(t *testing.T) {
 	enc.Encode(map[string]string{})
 
 	// begin with a bad call
-	code, _, err := TestAPICall(http.MethodPost, "/start", b, GameStartRoute)
+	code, _, err := TestAPICall(http.MethodPost, "/start", b, GameStartRoute, "")
 	assert.Nil(t, err)
 	assert.Equal(t, http.StatusBadRequest, code, "bad body sent")
 
@@ -51,8 +51,55 @@ func TestGameStartRoute(t *testing.T) {
 	input := &GameRequest{}
 	b.Reset()
 	enc.Encode(input)
-	code, _, err = TestAPICall(http.MethodPost, "/start", b, GameStartRoute)
+	code, _, err = TestAPICall(http.MethodPost, "/start", b, GameStartRoute, "")
 	assert.Nil(t, err)
 	assert.Equal(t, http.StatusBadRequest, code, "empty body sent")
+
+	// TODO: finish with actual logic checks
+}
+
+func TestGameMoveRoute(t *testing.T) {
+	ConfigSetup()
+	b := new(bytes.Buffer)
+	enc := json.NewEncoder(b)
+	enc.Encode(map[string]string{})
+
+	// begin with a bad call
+	code, _, err := TestAPICall(http.MethodPost, "/move", b, MoveRequestRoute, "")
+	assert.Nil(t, err)
+	assert.Equal(t, http.StatusBadRequest, code, "bad body sent")
+
+	// now pass in blank but valid fields; should still error
+	input := &MoveRequest{}
+	b.Reset()
+	enc.Encode(input)
+	code, _, err = TestAPICall(http.MethodPost, "/move", b, MoveRequestRoute, "")
+	assert.Nil(t, err)
+	assert.Equal(t, http.StatusBadRequest, code, "empty body sent")
+
+	// TODO: finish with actual logic checks
+
+}
+
+func TestGameEndRoute(t *testing.T) {
+	ConfigSetup()
+	b := new(bytes.Buffer)
+	enc := json.NewEncoder(b)
+	enc.Encode(map[string]string{})
+
+	// begin with a bad call
+	code, _, err := TestAPICall(http.MethodPost, "/end", b, GameEndRoute, "")
+	assert.Nil(t, err)
+	assert.Equal(t, http.StatusBadRequest, code, "bad body sent")
+
+	// now pass in blank but valid fields; should still error
+	input := &MoveRequest{}
+	b.Reset()
+	enc.Encode(input)
+	code, _, err = TestAPICall(http.MethodPost, "/end", b, GameEndRoute, "")
+	assert.Nil(t, err)
+	assert.Equal(t, http.StatusBadRequest, code, "empty body sent")
+
+	// TODO: finish with actual logic checks
 
 }

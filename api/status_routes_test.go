@@ -18,7 +18,7 @@ func TestStatusAndHealthRoutes(t *testing.T) {
 	enc.Encode(map[string]string{})
 
 	// right now, these are very simple as there's no external caching to set up
-	code, body, err := TestAPICall(http.MethodGet, "/status", b, StatusRequestRoute)
+	code, body, err := TestAPICall(http.MethodGet, "/status", b, StatusRequestRoute, "")
 	assert.Nil(t, err)
 	assert.Equal(t, http.StatusOK, code, fmt.Sprintf("body response was %+v", body))
 	m, _ := UnmarshalMap(body)
@@ -29,7 +29,7 @@ func TestStatusAndHealthRoutes(t *testing.T) {
 	assert.Equal(t, "up", status)
 
 	// now the health
-	code, body, err = TestAPICall(http.MethodGet, "/health", b, StatusRequestRoute)
+	code, body, err = TestAPICall(http.MethodGet, "/health", b, StatusRequestRoute, "")
 	assert.Nil(t, err)
 	assert.Equal(t, http.StatusOK, code, fmt.Sprintf("body response was %+v", body))
 	m, _ = UnmarshalMap(body)

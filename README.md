@@ -20,6 +20,7 @@ I vendor my libraries for ease of use and development.
 Currently, the following fields are configurable from the environment:
 
 - BS_API_PORT - the port for the server to listen on, default to 7000
+- BS_AUTH_KEY - the authorization key for admin end points; if not provided it will be randomly generated based upon either a random seed or the value of BS_AUTH_SEED
 - BS_SNAKE_COLOR - the desired color of the snake, such as `#FF00AB`. If not provided, it will be randomized at startup.
 - BS_SNAKE_HEAD - the desired snake head. If not provided, it will be randomized at startup.
 - BS_SNAKE_TAIL - the desired snake tail. If not provided, it will be randomized at startup.
@@ -27,6 +28,12 @@ Currently, the following fields are configurable from the environment:
 - BS_VERSION - the version of your API, such as a tag or semver number, defaults to v0.0.1
 
 ## Running
+
+Note that the admin end points require an authorization key send in the `Authorization` header in the format:
+
+`Bearer: key`
+
+If you do not provide this via the environment (strongly recommended), it will be randomly generated and shown in the server output on startup. This means that when starting the server (either via Docker or the binary), if you do not provide a value for `BS_AUTH_KEY` it will be shown in the terminal and you will need to copy it and use it. *If the server restarts a new random key will be generated so it is virtually always better to pass it in yourself.*
 
 ### Docker
 

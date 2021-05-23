@@ -61,6 +61,13 @@ func MoveRequestRoute(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Printf("\n-----Received Move request-----\n%+v\n---------\n", request)
 
+	if request.Game.ID == "" || request.Turn == 0 {
+		SendError(&w, r, http.StatusBadRequest, "move_request_empty", "empty move request", &map[string]interface{}{
+			"request": request,
+		})
+		return
+	}
+
 	// for initial testing, just choose a random direction
 	// TODO: break off into actual logic
 	direction := moves[rand.Intn(4)]

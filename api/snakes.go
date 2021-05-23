@@ -3,13 +3,21 @@ package api
 import (
 	"fmt"
 	"math/rand"
+	"net/http"
 )
 
 // SnakeOptions are the different personalization options for a snake: https://play.battlesnake.com/references/customizations/
 type SnakeOptions struct {
-	Color string
-	Head  string
-	Tail  string
+	Color string `json:"color"`
+	Head  string `json:"head"`
+	Tail  string `json:"tail"`
+	// Randomize is used for the route to change the snake
+	Randomize bool `json:"randomize"`
+}
+
+// Bind is called after render binds the data from the body into the struct
+func (data *SnakeOptions) Bind(r *http.Request) error {
+	return nil
 }
 
 // Battlesnake is a single instance of a snake: https://docs.battlesnake.com/references/api#battlesnake
@@ -79,7 +87,7 @@ const (
 	SNAKE_TAIL_WINTER_2019_PRESENT   = "present"
 
 	// tails - stay home and code 2020
-	SNAKE_TAIL_CODE_2020_COFEE      = "coffee"
+	SNAKE_TAIL_CODE_2020_COFFEE     = "coffee"
 	SNAKE_TAIL_CODE_2020_MOUSE      = "mouse"
 	SNAKE_TAIL_CODE_2020_TIGER_TAIL = "tiger-tail"
 	SNAKE_TAIL_CODE_2020_WEIGHT     = "weight"
@@ -128,7 +136,7 @@ var tails = []string{
 	SNAKE_TAIL_WINTER_2019_FLAKE,
 	SNAKE_TAIL_WINTER_2019_ICE_SKATE,
 	SNAKE_TAIL_WINTER_2019_PRESENT,
-	SNAKE_TAIL_CODE_2020_COFEE,
+	SNAKE_TAIL_CODE_2020_COFFEE,
 	SNAKE_TAIL_CODE_2020_MOUSE,
 	SNAKE_TAIL_CODE_2020_TIGER_TAIL,
 	SNAKE_TAIL_CODE_2020_WEIGHT,
