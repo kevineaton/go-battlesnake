@@ -2,7 +2,6 @@ package api
 
 import (
 	"fmt"
-	"math/rand"
 	"net/http"
 
 	"github.com/go-chi/render"
@@ -70,7 +69,14 @@ func MoveRequestRoute(w http.ResponseWriter, r *http.Request) {
 
 	// for initial testing, just choose a random direction
 	// TODO: break off into actual logic
-	direction := moves[rand.Intn(4)]
+	direction, err := DecideNextMove(request)
+	if err != nil {
+		SendError(&w, r, http.StatusBadRequest, "move_request_decision_error", fmt.Sprintf("error making move: %s", err.Error()), &map[string]interface{}{
+			"request": request,
+			"error":   err.Error(),
+		})
+		return
+	}
 	response := MoveResponse{
 		Move:  direction,
 		Shout: "Yo yo yo",

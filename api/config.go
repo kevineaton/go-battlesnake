@@ -22,6 +22,7 @@ type Configuration struct {
 	SnakeColor string
 	SnakeHead  string
 	SnakeTail  string
+	Shout      string
 }
 
 var Config *Configuration
@@ -55,6 +56,8 @@ func ConfigSetup() {
 	Config.SnakeColor = envHelper("BS_SNAKE_COLOR", getRandomColorHex())
 	Config.SnakeHead = envHelper("BS_SNAKE_HEAD", getRandomHead())
 	Config.SnakeTail = envHelper("BS_SNAKE_TAIL", getRandomTail())
+
+	Config.Shout = envHelper("BS_SHOUT", getRandomShout())
 }
 
 func envHelper(variable, defaultValue string) string {
