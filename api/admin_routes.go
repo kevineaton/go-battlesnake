@@ -25,6 +25,7 @@ func ChangeSnakeRoute(w http.ResponseWriter, r *http.Request) {
 		input.Color = getRandomColorHex()
 		input.Head = getRandomHead()
 		input.Tail = getRandomTail()
+		input.Shout = getRandomShout()
 	}
 	if input.Color != "" {
 		Config.SnakeColor = input.Color
@@ -34,6 +35,9 @@ func ChangeSnakeRoute(w http.ResponseWriter, r *http.Request) {
 	}
 	if input.Tail != "" {
 		Config.SnakeTail = input.Tail
+	}
+	if input.Shout != "" {
+		Config.Shout = input.Shout
 	}
 	Send(w, http.StatusOK, input)
 }

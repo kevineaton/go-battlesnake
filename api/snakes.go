@@ -12,7 +12,8 @@ type SnakeOptions struct {
 	Head  string `json:"head"`
 	Tail  string `json:"tail"`
 	// Randomize is used for the route to change the snake
-	Randomize bool `json:"randomize"`
+	Randomize bool   `json:"randomize"`
+	Shout     string `json:"shout"`
 }
 
 // Bind is called after render binds the data from the body into the struct
@@ -142,6 +143,12 @@ var tails = []string{
 	SNAKE_TAIL_CODE_2020_WEIGHT,
 }
 
+var shouts = []string{
+	"Awesome!",
+	"Hiss!",
+	"We've got this!",
+}
+
 var hexes = []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"}
 
 func getRandomHead() string {
@@ -161,4 +168,8 @@ func getRandomColorHex() string {
 		hexes[rand.Intn(len(hexes)-1)],
 		hexes[rand.Intn(len(hexes)-1)],
 	)
+}
+
+func getRandomShout() string {
+	return shouts[rand.Intn(len(shouts)-1)]
 }

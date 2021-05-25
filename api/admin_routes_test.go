@@ -30,6 +30,7 @@ func TestSnakeUpdateRoute(t *testing.T) {
 		Color: Config.SnakeColor,
 		Head:  Config.SnakeHead,
 		Tail:  Config.SnakeTail,
+		Shout: Config.Shout,
 	}
 
 	// make sure they are new
@@ -46,6 +47,7 @@ func TestSnakeUpdateRoute(t *testing.T) {
 		Color: "#000000",
 		Head:  newHead,
 		Tail:  newTail,
+		Shout: "Updated!",
 	}
 	b.Reset()
 	enc.Encode(input)
@@ -60,6 +62,7 @@ func TestSnakeUpdateRoute(t *testing.T) {
 	assert.Equal(t, input.Color, ret.Color)
 	assert.Equal(t, input.Head, ret.Head)
 	assert.Equal(t, input.Tail, ret.Tail)
+	assert.Equal(t, input.Shout, ret.Shout)
 
 	code, body, err = TestAPICall(http.MethodGet, "/", b, GetSnakeRoute, Config.AuthKey)
 	assert.Nil(t, err)
