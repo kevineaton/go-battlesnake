@@ -23,6 +23,8 @@ type Configuration struct {
 	SnakeHead  string
 	SnakeTail  string
 	Shout      string
+
+	PrintBoardBeforeTurn string
 }
 
 var Config *Configuration
@@ -58,6 +60,9 @@ func ConfigSetup() {
 	Config.SnakeTail = envHelper("BS_SNAKE_TAIL", getRandomTail())
 
 	Config.Shout = envHelper("BS_SHOUT", getRandomShout())
+
+	Config.PrintBoardBeforeTurn = strings.ToLower(envHelper("BS_PRINT_BOARD", ""))
+
 }
 
 func envHelper(variable, defaultValue string) string {

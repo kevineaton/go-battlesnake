@@ -86,4 +86,4 @@ Contributions welcome but may not be merged. It's best to reach out first. This 
 - Add other snakes to the algorithm; currently other snakes are not considered
 - Add in proper logging
 - Add in monitoring
-- Add in flag for printing out the board and whether to print to stdout or to a log
+- X Add in flag for printing out the board and whether to print to stdout or to a log

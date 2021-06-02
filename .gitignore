@@ -1,3 +1,4 @@
 go-battlesnake
 coverage.html
 coverage.out
+*.log
